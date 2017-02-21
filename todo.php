@@ -1,29 +1,52 @@
+<?php
+session_start();
+include("dbconnection.php");
+
+$userid = $_SESSION["userid"];
+$username = $_SESSION["username"];
+
+if (isset($_POST['add'])) {
+
+    $todotask = $_POST['todotask'];
+
+    if ($todotask == "")
+        echo "Please Enter Todo Task";
+    else {
+        $query = "INSERT INTO todo (todotask, userid)
+			VALUES ('$todotask', '$userid')";
+
+        if (mysqli_query($con, $query))
+            echo "Added successfully<br><br>";
+        else
+            echo "Error : " . mysqli_error($con);
+    }
+
+}
+
+$query = "SELECT * FROM todo WHERE userid = '$userid'";
+$result = mysqli_query($con, $query);
+
+if (mysqli_num_rows($result) > 0) {
+    while($row = mysqli_fetch_assoc($result)) {
+        echo $row["todotask"] . " ";
+        $todoid = $row["todoid"];
+        echo "<a href='edittodo.php?todoid=$todoid'>edit</a><br>";
+    }
+} else {
+    echo "You haven't added any items, yet.";
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <title>To do</title>
-    <meta name="viewport" content="width=device-width ,initial-scale=1.0" />
-    <link href="style.css" type="text/css" rel="stylesheet">
+    <title></title>
 </head>
 <body>
-    <div class="list">
-        <h1 class="header">To do.</h1>
-        <ul class="items">
-            <li>
-                <span class="item"><input type="checkbox" name="todo" value="todo">Pick up shopping</span>
-                <input type="submit" value="Edit" class="edit">
-            </li>
-            <li>
-                <span class="item"> <input type="checkbox" name="todo" value="todo">Learn php</span>
-                <input type="submit" value="Edit" class="edit">
-            </li>
-        </ul>
-
-        <form class="item-add" action="addtodo.php" method="post">
-            <input type="text" name="name" placeholder="Type a new item here." class="input" autocomplete="off">
-            <input type="submit" value="Add" class="submit">
-        </form>
-    </div>
+<form method="POST" action="">
+    <input name="todotask" type="text" placeholder="Add todo">
+    <input name="add" type="submit" value="Add">
+</form>
 </body>
 </html>
