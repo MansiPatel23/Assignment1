@@ -1,0 +1,59 @@
+body{
+    background-color: #F7F992;
+}
+
+body, input{
+    font: 1em "open sans", sans-serif;
+    color: #363639;
+}
+a{
+    text-decoration: none;
+    border-bottom: 1px dashed #363639;
+}
+
+/* List */
+.list{
+    background-color: #fff;
+    margin: 20px auto;
+    width:100%;
+    max-width: 500px;
+    padding:20px;
+    border-radius: 2px;
+    box-shadow: 30px 30px 0 rgba(0,0,0,.1);
+    box-sizing: border-box;
+}
+list .header{
+    font-family: "Comic Sans MS", cursive;
+    margin: 0 0 10px 0;
+}
+.items{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.items li, .item add, .input{
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    padding: 15px 0;
+}
+.input:focus{
+    outline: none;
+}
+
+/* Submit Button */
+.submit{
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    width:100%;
+    margin-top: 10px;
+    box-shadow: 3px 3px 0 #ddd;
+}
+
+/* Header */
+h2{
+    color: #414718;
+    font-family: Chiller;
+    font-size: 300%;
+}

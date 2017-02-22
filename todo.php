@@ -41,12 +41,16 @@ if (mysqli_num_rows($result) > 0) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Todo List</title>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
 </head>
 <body>
-<form method="POST" action="">
+<h2>Todo List</h2>
+<form method="POST" action="todo.php">
+    <table>
     <input name="todotask" type="text" placeholder="Add todo">
     <input name="add" type="submit" value="Add">
+    </table>
 </form>
 </body>
 </html>

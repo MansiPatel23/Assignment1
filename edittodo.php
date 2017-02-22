@@ -1,10 +1,12 @@
 <?php
 session_start();
-include("dbconnection.php");
+include("dbconnection.php");        // connection with database and server
 
 $userid = $_SESSION["userid"];
 $todoid = $_GET['todoid'];
 $username = $_SESSION["username"];
+
+/* this query will select data from 'todo' table and match userid and todoid */
 
 $query = "SELECT * FROM todo 
 	WHERE userid = '$userid' AND todoid = '$todoid'";
@@ -21,6 +23,8 @@ if (isset($_POST['edit'])) {
     if ($todotask == "")
         echo "Please Enter Todo";
     else {
+
+        /* UPDATE query will edit todo task in table */
         $query = "UPDATE todo SET todotask = '$todotask'
 			WHERE userid = '$userid' AND todoid = '$todoid'";
 
@@ -30,7 +34,7 @@ if (isset($_POST['edit'])) {
             echo "Error : " . mysqli_error($con);
     }
 }
-
+// DELETE query will check the userid and todoid, if data will match then it will delete record of todo task from table
 if (isset($_POST['delete'])) {
     $query = "DELETE FROM todo
 		WHERE userid = '$userid' AND todoid = '$todoid'";
@@ -47,7 +51,8 @@ if (isset($_POST['delete'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Edit todo list</title>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
 </head>
 <body>
 <a href="todo.php">Todo</a>
